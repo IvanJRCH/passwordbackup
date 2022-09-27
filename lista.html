@@ -154,6 +154,22 @@ criptomonedas cuando estas en la PC y al 20% de cpu o menos nunca en tu movil.
 		*/
 		var itemEdicion = 0;
 		
+		window.actualizarTitulo = function(indice) {
+			var clv = document.getElementById("clave").value;
+
+			if( datos[indice].length <= 2 ) {
+				if( localStorage.clave == sha256( sha256(clv) + sha256(clv) ) ) {
+					datos[indice][0] = document.getElementById("item"+indice).value;
+					document.getElementById("item"+indice).style.border="1px solid green";
+				}else{
+					alert("Contraseñas incorrecta");
+				}
+			}else{
+				datos[indice][0] = document.getElementById("item"+indice).value;
+			}
+			localStorage.datos = JSON.stringify(datos);
+		}
+				
 		window.actualizar = function() {
 			var clv = document.getElementById("clave").value;
 			
@@ -252,9 +268,13 @@ criptomonedas cuando estas en la PC y al 20% de cpu o menos nunca en tu movil.
 		function CrearItem(i,titulo,indiceInformacion) {
 		let l = `<div id="item_${i}" class="row my-2">
 						<div class="col-10">
-							<input type="text" readonly class="form-control" id="item${i}" value="${titulo}"></input>        
+							<input type="text" class="form-control" id="item${i}" value="${titulo}"></input>        
 						</div>
 						<div class="col-2">
+							<button title="Actualizar Titulo" onclick="window.actualizarTitulo(${indiceInformacion});" class="btn btn-sm btn-outline-primary">
+								<img src="arrow-clockwise.svg" style="width:24px;height:24px;"></img>
+							</button>
+						
 							<button data-bs-toggle="modal" onclick="window.ver(${indiceInformacion});" data-bs-target="#dialogo1" class="btn btn-sm btn-outline-primary">
 								<img src="key.svg" style="width:24px;height:24px;"></img>
 							</button>
