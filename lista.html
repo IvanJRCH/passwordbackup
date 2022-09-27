@@ -166,6 +166,7 @@ criptomonedas cuando estas en la PC y al 20% de cpu o menos nunca en tu movil.
 				}
 			}else{
 				datos[indice][0] = document.getElementById("item"+indice).value;
+				document.getElementById("item"+indice).style.border="1px solid green";
 			}
 			localStorage.datos = JSON.stringify(datos);
 		}
