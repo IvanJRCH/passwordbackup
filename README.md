@@ -1,5 +1,5 @@
 # passwordbackup
-Guarda tus contraseñas de forma segura con mi algoritmo<br>
+Gestor de contraseñas - Guarda tus contraseñas de forma segura con mi algoritmo<br>
 
 <b>Modo de trabajo del algoritmo</b><br>
 1 - La contraseña que elijas se convierte a sha256<br>
@@ -13,7 +13,7 @@ Modo de uso<br>
 Si te gusta este proyecto considera programar una extension para los navegadores para el 😅<br>
 <br>
 <br>
-Save your passwords securely with my algorithm.<br>
+Password Manager -Save your passwords securely with my algorithm.<br>
 <br>
 <b>Algorithm working mode</b>:<br>
 1 - The password you choose is converted to sha256.<br>
