@@ -10,6 +10,8 @@ Guarda tus contraseñas de forma segura con mi algoritmo<br>
 Modo de uso<br>
 1 - la contraseña debe ser larga para evitar ataques de fuerza bruta<br>
 <br>
+Si te gusta este proyecto considera programar una extension para los navegadores para el 😅<br>
+<br>
 <br>
 Save your passwords securely with my algorithm.<br>
 <br>
@@ -21,3 +23,5 @@ Save your passwords securely with my algorithm.<br>
 <br>
 How to use:<br>
 1 - The password should be long to avoid brute force attacks.<br>
+<br>
+If you like this project, consider programming a browser extension for it. 😅
