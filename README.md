@@ -1,11 +1,11 @@
 # passwordbackup
-Guarda tus contraseñas de forma segura con mi algoritmo
+Guarda tus contraseñas de forma segura con mi algoritmo<br>
 
-Modo de trabajo del algoritmo
-1 - La contraseña que elijas se convierte a sha256
-2 - Se usa el sha256 para ofuscar los datos guardados agregando al azar redundancia al principio y al final con una suma simple por cada caracter del hash
-3 - De modo que internamente quedaria algo a si: (Redundancia)-(Datos)-(Redundancia)
-4 - El algoritmo sha256 le entrega una capa de seguridad a este algoritmo
+Modo de trabajo del algoritmo<br>
+1 - La contraseña que elijas se convierte a sha256<br>
+2 - Se usa el sha256 para ofuscar los datos guardados agregando al azar redundancia al principio y al final con una suma simple por cada caracter del hash<br>
+3 - De modo que internamente quedaria algo a si: (Redundancia)-(Datos)-(Redundancia)<br>
+4 - El algoritmo sha256 le entrega una capa de seguridad a este algoritmo<br>
 
 Modo de uso
 1 - la contraseña debe ser larga para evitar ataques de fuerza bruta
